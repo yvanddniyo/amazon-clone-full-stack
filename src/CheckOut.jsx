@@ -1,11 +1,11 @@
-import React from 'react'
-import "./CheckOut.css"
-import Subtotal from './Subtotal'
-import { useStateValue } from './StateProvider'
-import CheckoutProduct from './CheckoutProduct'
-
+import React, { useState} from 'react';
+import "./CheckOut.css";
+import Subtotal from './Subtotal';
+import { useStateValue } from './StateProvider';
+import CheckoutProduct from './CheckoutProduct';
+import Login from './Login';
 function CheckOut() {
-  const [{basket}, dispatch] = useStateValue();
+  const [{ basket, user}, dispatch] = useStateValue();
   return (
     <div className='checkout'>
       <div className="checkout__left">
@@ -15,8 +15,9 @@ function CheckOut() {
           alt="checkout__banner" 
         />
 
-        <div className="checkout__title">
-          <h2>Your shopping Basket</h2>
+        <div>
+          <h3>Hello, {user?.email}</h3>
+          <h2 className="checkout__title">Your shopping Basket</h2>
              {basket.map(item => (
               <CheckoutProduct
                id={item.id}
